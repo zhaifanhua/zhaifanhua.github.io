@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: undefined,
   isToc: false,
-  postUpdate: '2021-03-16 15:07:11'
+  postUpdate: '2021-03-16 15:23:48'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -200,7 +200,7 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
       for (let i = 0; i < array.length; i++) {
         result += '<div class=\'aside-list-item\'>'
 
-        if (false) {
+        if (true) {
           const name = 'data-lazy-src'
           result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
         }
@@ -225,7 +225,7 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
       Waline.Widget.RecentComments({
         el: '#card-newest-comments .aside-list',
         serverURL: '',
-        count: 6
+        count: 5
       }).then(comments => {
         const walineArray = comments.map(function (e) {
           return {
