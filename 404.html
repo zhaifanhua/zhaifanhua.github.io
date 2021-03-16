@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: undefined,
   isToc: false,
-  postUpdate: '2021-03-16 11:40:55'
+  postUpdate: '2021-03-16 12:12:31'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script>var pre
 
   }
 }
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script>window.addEventListener('load', () => {
   const changeContent = (content) => {
     if (content === '') return content
 
@@ -181,10 +181,10 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
     return content
   }
 
-  const getIcon = (icon, mail) => {
-    if (icon) return icon
+  const getIcon = (avatar,mail) => {
+    if (avatar) return avatar
     let defaultIcon = '?d=monsterid'
-    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    let iconUrl = `https://gravatar.loli.net/avatar/${mail + defaultIcon}`
     return iconUrl
   }
 
@@ -216,40 +216,36 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
   }
 
   const getComment = () => {
-    const serverURL = 'https://yEy4boHn.api.lncldglobal.com'
-
-    var settings = {
-      "method": "GET",
-      "headers": {
-        "X-LC-Id": 'yEy4boHnpzW11sg3hsVDmtyN-gzGzoHsz',
-        "X-LC-Key": 'qM2lUDKUlkLdeJBFvc2SI7ji',
-        "Content-Type": "application/json"
-      },
-    }
-
-    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
-      .then(response => response.json())
-      .then(data => {
-        const valineArray = data.results.map(function (e) {
+    const loadWaline = () => {
+      Waline.Widget.RecentComments({
+        el: '#card-newest-comments .aside-list',
+        serverURL: '',
+        count: 6
+      }).then(comments => {
+        const walineArray = comments.map(function (e) {
           return {
-            'avatar': getIcon(e.QQAvatar, e.mail),
             'content': changeContent(e.comment),
+            'avatar': getIcon(e.QQAvatar,e.mail),
             'nick': e.nick,
             'url': e.url + '#' + e.objectId,
             'date': e.updatedAt,
           }
         })
-        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
-        generateHtml(valineArray)
+        saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+        generateHtml(walineArray)
       }).catch(e => {
         const $dom = document.querySelector('#card-newest-comments .aside-list')
         $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
       }) 
+    }
+
+    if (typeof Waline === 'function') loadWaline() 
+    else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(loadWaline)
   }
 
   const newestCommentInit = () => {
     if (document.querySelector('#card-newest-comments .aside-list')) {
-      const data = saveToLocal.get('valine-newest-comments')
+      const data = saveToLocal.get('waline-newest-comments')
       if (data) {
         generateHtml(JSON.parse(data))
       } else {
@@ -271,7 +267,7 @@ window.CRISP_WEBSITE_ID = "75a77ca7-58dc-442d-89e2-1abc87549a43";
 })();
 $crisp.push(["safe", true])
 
-if (false) {
+if (true) {
   $crisp.push(["do", "chat:hide"])
   $crisp.push(["on", "chat:closed", function() {
     $crisp.push(["do", "chat:hide"])
@@ -286,7 +282,7 @@ if (false) {
   }
   chatBtnFn()
 } else {
-  if (false) {
+  if (true) {
     function chatBtnHide () {
       $crisp.push(["do", "chat:hide"])
     }
