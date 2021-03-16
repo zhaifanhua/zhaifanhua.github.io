@@ -1,0 +1,464 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>摘繁华博客 | 摘繁华博客</title><meta name="keywords" content="摘繁华,博客,摘繁华博客"><meta name="author" content="摘繁华"><meta name="copyright" content="摘繁华"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title:在CentOS上安装Nginx配置HTTPS并设置系统服务和开机启动（最全教程）date:2021-03-15 04:04:17updated:2021-03-16 12:55:17type:tags   友情提示：全部配完大约需要20分钟，本教程配合 xshell 和 xftp 使用更佳。本教程 摘繁华 版权所有。  :tent:操作按键 常用按键： 复制操作：Shift+Ins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摘繁华博客">
+<meta property="og:url" content="https://blog.zhaifanhua.com/2021/03/16/%E5%9C%A8CentOS%E4%B8%8A%E5%AE%89%E8%A3%85Nginx%E9%85%8D%E7%BD%AEHTTPS%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%EF%BC%88%E6%9C%80%E5%85%A8%E6%95%99%E7%A8%8B%EF%BC%89/index.html">
+<meta property="og:site_name" content="摘繁华博客">
+<meta property="og:description" content="title:在CentOS上安装Nginx配置HTTPS并设置系统服务和开机启动（最全教程）date:2021-03-15 04:04:17updated:2021-03-16 12:55:17type:tags   友情提示：全部配完大约需要20分钟，本教程配合 xshell 和 xftp 使用更佳。本教程 摘繁华 版权所有。  :tent:操作按键 常用按键： 复制操作：Shift+Ins">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2021-03-16T05:04:09.899Z">
+<meta property="article:modified_time" content="2021-03-16T05:12:42.166Z">
+<meta property="article:author" content="摘繁华">
+<meta property="article:tag" content="摘繁华,博客,摘繁华博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.zhaifanhua.com/2021/03/16/%E5%9C%A8CentOS%E4%B8%8A%E5%AE%89%E8%A3%85Nginx%E9%85%8D%E7%BD%AEHTTPS%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%EF%BC%88%E6%9C%80%E5%85%A8%E6%95%99%E7%A8%8B%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 摘繁华","link":"链接: ","source":"来源: 摘繁华博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2021-03-16 13:12:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/header/logo/zhaifanhua.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">摘繁华博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-16T05:04:09.899Z" title="发表于 2021-03-16 13:04:09">2021-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-16T05:12:42.166Z" title="更新于 2021-03-16 13:12:42">2021-03-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title:在CentOS上安装Nginx配置HTTPS并设置系统服务和开机启动（最全教程）<br>date:2021-03-15 04:04:17<br>updated:2021-03-16 12:55:17<br>type:tags</p>
+<hr>
+<blockquote>
+<p>友情提示：全部配完大约需要20分钟，本教程配合 xshell 和 xftp 使用更佳。本教程 摘繁华 版权所有。</p>
+</blockquote>
+<h3 id="tent-操作按键"><a href="#tent-操作按键" class="headerlink" title=":tent:操作按键"></a>:tent:操作按键</h3><blockquote>
+<p>常用按键：</p>
+<p>复制操作：<kbd>Shift</kbd>+<kbd>Ins</kbd> </p>
+<p>编辑器vim按键操作具体如下：</p>
+<p>开启编辑： <kbd> i </kbd> 或者 <kbd> Insert </kbd> </p>
+<p>退出编辑： <kbd> Esc </kbd> </p>
+<p>退出vim： <kbd>:</kbd> + <kbd>q </kbd> </p>
+<p>保存vim： <kbd>:</kbd> + <kbd>w</kbd> </p>
+<p>保存退出vim： <kbd>: </kbd> + <kbd>w </kbd> + <kbd>q </kbd> </p>
+<p>不保存退出vim： <kbd>: </kbd> + <kbd>q</kbd> + <kbd>! </kbd> </p>
+</blockquote>
+<h2 id="zap-第一步：安装所需要的依赖"><a href="#zap-第一步：安装所需要的依赖" class="headerlink" title=":zap:第一步：安装所需要的依赖"></a>:zap:第一步：安装所需要的依赖</h2><p>:church:1、所需要的依赖包括：gcc，pcre，zlib，openssl。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>GCC库</strong>（用来编译下载下来的 nginx 源码）</p>
+<p>GCC  是 Linux 下最主要的编译工具，GCC 不仅功能非常强大，结构也非常灵活。它可以通过不同的前端模块来支持各种语言，如 Java、Fortran、Pascal、Modula-3 和 Ada。</p>
+<p><strong>PCRE库</strong>（ rewrite 模块需要 pcre 库）</p>
+<p>PCRE 支持正则表达式。如果我们在配置文件 nginx.conf 中使用了正则表达式，那么在编译 Nginx 时就必须把PCRE库编译进 Nginx，因为 Nginx 的 HTTP 模块需要靠它来解析正则表达式。另外，pcre-devel 是使用PCRE做二次开发时所需要的开发库，包括头文件等，这也是编译 Nginx 所必须使用的。</p>
+<p><strong>ZLIB库</strong>（ gzip 模块需要 zlib 库）<br>  zlib 提供了很多压缩和解方式，用于对 HTTP 包的内容做 gzip 格式的压缩，如果我们在 nginx.conf 中配置了 gzip on，并指定对于某些类型（content-type）的HTTP响应使用 gzip 来进行压缩以减少网络传输量，则在编译时就必须把 zlib 编译进 Nginx。zlib-devel 是二次开发所需要的库。</p>
+<p><strong>OpenSSL库</strong>（SSL功能需要 openssl 库）<br> openssl 是一个安全套接字层密码库，如果服务器不只是要支持 HTTP，还需要在更安全的 SSL 协议上传输 HTTP，那么需要拥有 OpenSSL。另外，如果我们想使用 MD5、SHA1 等散列函数，那么也需要安装它。</p>
+</blockquote>
+<p>显示以下结果表示安装完成。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="SIxnBMU8ulNdD1m.png" alt="image-20210312142614045"></p>
+<h2 id="zap-第二步：升级-openssl-非必需"><a href="#zap-第二步：升级-openssl-非必需" class="headerlink" title=":zap:第二步：升级 openssl 非必需"></a>:zap:第二步：升级 openssl 非必需</h2><blockquote>
+<p>这个不是必需！不想升级可直接跳第三步，怕麻烦最好不升级，不升级也可以用，因为升级我踩过好多坑。</p>
+</blockquote>
+<p>yum安装的 openssl ，版本比较低，我们可以通过以下命令查看 openssl 的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl version -a</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="FrNOhAHLZ3GE9gB.png" alt="image-20210313215300685"></p>
+<blockquote>
+<p>openssl 的版本是 1.0.2k，这个是2017年发布的，已经有点老了，我们下载最新版本。</p>
+</blockquote>
+<p>:post_office:1、进入 <a target="_blank" rel="noopener" href="http://www.openssl.org/source/">openssl官网</a> 查看版本，这里我下载的是 <a target="_blank" rel="noopener" href="https://www.openssl.org/source/openssl-1.1.1j.tar.gz">openssl-1.1.1j.tar.gz</a>  。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">wget https:&#x2F;&#x2F;www.openssl.org&#x2F;source&#x2F;openssl-1.1.1j.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>:coffee:2、解压 openssl-1.1.1j.tar.gz 并进入解压目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf openssl-1.1.1j.tar.gz</span><br><span class="line">cd openssl-1.1.1j</span><br></pre></td></tr></table></figure>
+
+<p>:honey_pot:3、进行重新编译 openssl 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;config shared zlib</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此过程需要 3 分钟左右……</p>
+</blockquote>
+<p>编译完成后以下图：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="v4JasU5h6SWdpYz.png" alt="image-20210314003448904"></p>
+<p>:baby_bottle:4、备份当前openssl。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv &#x2F;usr&#x2F;bin&#x2F;openssl &#x2F;usr&#x2F;bin&#x2F;openssl.bak</span><br><span class="line">mv &#x2F;usr&#x2F;include&#x2F;openssl &#x2F;usr&#x2F;include&#x2F;openssl.bak</span><br></pre></td></tr></table></figure>
+
+<p>:sake:5、配置使用新版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;openssl &#x2F;usr&#x2F;bin&#x2F;openssl</span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;include&#x2F;openssl &#x2F;usr&#x2F;include&#x2F;openssl</span><br></pre></td></tr></table></figure>
+
+<p>:cocktail:6、更新动态链接库数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&#x2F;usr&#x2F;local&#x2F;lib64&#x2F;&quot; &gt;&gt; &#x2F;etc&#x2F;ld.so.conf</span><br></pre></td></tr></table></figure>
+
+<p>重新加载动态链接库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldconfig -v</span><br></pre></td></tr></table></figure>
+
+<p>:fork_and_knife:7、重新查看版本号进行验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl version -a</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="FtQyIWRTgch7CLr.png" alt="image-20210314013041087"></p>
+<p>:beers:8、为适应NGINX编译需要设置参数，需要修改openss路径，不然会出现找不到openssl目录的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd auto&#x2F;lib&#x2F;openssl</span><br><span class="line">cp conf &#x2F;mnt&#x2F;</span><br><span class="line">vim conf</span><br></pre></td></tr></table></figure>
+
+<p>将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CORE_INCS&#x3D;&quot;$CORE_INCS $OPENSSL&#x2F;.openssl&#x2F;include&quot;</span><br><span class="line">CORE_DEPS&#x3D;&quot;$CORE_DEPS $OPENSSL&#x2F;.openssl&#x2F;include&#x2F;openssl&#x2F;ssl.h&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS $OPENSSL&#x2F;.openssl&#x2F;lib&#x2F;libssl.a&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS $OPENSSL&#x2F;.openssl&#x2F;lib&#x2F;libcrypto.a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CORE_INCS&#x3D;&quot;$CORE_INCS $OPENSSL&#x2F;include&quot;</span><br><span class="line">CORE_DEPS&#x3D;&quot;$CORE_DEPS $OPENSSL&#x2F;include&#x2F;openssl&#x2F;ssl.h&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS $OPENSSL&#x2F;lib&#x2F;libssl.a&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS $OPENSSL&#x2F;lib&#x2F;libcrypto.a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>:bento:9、建立libssl.a和libcrypto.a的软连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;usr&#x2F;local&#x2F;ssl&#x2F;lib</span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;lib64&#x2F;libssl.a &#x2F;usr&#x2F;local&#x2F;ssl&#x2F;lib&#x2F;libssl.a</span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;lib64&#x2F;libcrypto.a &#x2F;usr&#x2F;local&#x2F;ssl&#x2F;lib&#x2F;libcrypto.a</span><br></pre></td></tr></table></figure>
+
+<p>:rice_ball:10、建立软连接openssl后，/usr/local/ssl/下没有include路径，需重新指向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s &#x2F;usr&#x2F;include&#x2F; &#x2F;usr&#x2F;local&#x2F;ssl&#x2F;include</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<h2 id="zap-第三步：正式安装Nginx"><a href="#zap-第三步：正式安装Nginx" class="headerlink" title=":zap:第三步：正式安装Nginx"></a>:zap:第三步：正式安装Nginx</h2><p>:fish_cake:1、先进入到 usr/local 目录，创建并进入 nginx 目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">mkdir nginx</span><br><span class="line">cd nginx</span><br></pre></td></tr></table></figure>
+
+<p>:fried_shrimp:2、通过 wget 命令在线获取到 nginx 的安装包，这里我选择的是 nginx-1.17.7 这个版本，命令是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.17.7.tar.gz</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最新版本可以直接点直通车查看：<a target="_blank" rel="noopener" href="https://nginx.org/download">nginx下载地址</a></p>
+</blockquote>
+<p>:oden:3、解压 nginx-1.17.7.tar.gz。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.17.7.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>:doughnut:4、进入刚刚解压的文件夹nginx-1.17.7进行安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd nginx-1.17.7</span><br></pre></td></tr></table></figure>
+
+<p>:rice:5、使用–prefix参数指定nginx安装的目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module</span><br></pre></td></tr></table></figure>
+
+<p>:oden:6、用make、make install安装，安装命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>显示以下结果表示安装完成。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="ShzbZVRoi1gWEw4.png" alt="image-20210314050029293"></p>
+<p>:spaghetti:7、查看nginx版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -V</span><br></pre></td></tr></table></figure>
+
+<p>看到版本号为 1.17.7，各个模块也安装正常。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="rL2sSxP8IJ7qDAF.png" alt="image-20210314050114769"></p>
+<p>执行完成后看看Nginx安在什么地方了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis nginx</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，我的nginx是安装在了 /usr/local/nginx。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="cB5ofPXH9jLRgQa.png" alt="image-20210314050157365"></p>
+<p>:icecream:8、运行命令启动nginx。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</span><br></pre></td></tr></table></figure>
+
+<p>:cake:9、用ps命令看看nginx进程跑起来没有。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure>
+
+<p>跑起来了，说明安装没有问题。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="Z9tXGcSl6zkiUMf.png" alt="image-20210314050237838"></p>
+<h2 id="zap-第四步：验证是否成功安装"><a href="#zap-第四步：验证是否成功安装" class="headerlink" title=":zap:第四步：验证是否成功安装"></a>:zap:第四步：验证是否成功安装</h2><p>:doughnut:1、现在在浏览器输入ip地址或者localhost，就能看到Nginx的欢迎界面了。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="fK9RLbo72CvxrEI.png" alt="image-20210312152634185"></p>
+<p>到此，Nginx成功完成安装！接下来就是配置nginx让别人能访问到你的网站。</p>
+<h2 id="zap-第五步：配置nginx"><a href="#zap-第五步：配置nginx" class="headerlink" title=":zap:第五步：配置nginx"></a>:zap:第五步：配置nginx</h2><p>:custard:1、打开文件夹 /usr/local/nginx/conf ，查看目录结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="DBt7GjlLxdPCFKk.png" alt="image-20210312160909002"></p>
+<p>可以看到里面有nginx.conf这个文件，使用命令 vim 打开时是这样的</p>
+<p><img src= "/img/loading.gif" data-lazy-src="wRkLQuzWtTy5MHJ.png" alt="image-20210312161955404"></p>
+<p><code>后面要用到的链接</code><span id="shuoming">说明文件</span></p>
+<p>这里有必要对nginx.conf说明一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">#user  nobody;</span><br><span class="line">worker_processes  1; # 工作进程：数目。根据硬件调整，通常等于cpu数量或者2倍cpu数量。</span><br><span class="line"></span><br><span class="line">#错误日志存放路径。</span><br><span class="line">#error_log  logs&#x2F;error.log;</span><br><span class="line">#error_log  logs&#x2F;error.log  notice;</span><br><span class="line">#error_log  logs&#x2F;error.log  info;</span><br><span class="line"></span><br><span class="line">#pid        logs&#x2F;nginx.pid; # nginx进程pid存放路径。</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024; # 工作进程的最大连接数量。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types; # 指定mime类型，由mime.type来定义。</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    # 日志格式设置</span><br><span class="line">    #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">    #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span><br><span class="line">    #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span><br><span class="line"></span><br><span class="line">    # 用log_format指令设置日志格式后，需要用access_log来指定日志文件存放路径。</span><br><span class="line">    #access_log  logs&#x2F;access.log  main;</span><br><span class="line"></span><br><span class="line">    # 指定nginx是否调用sendfile函数来输出文件，对于普通应用，必须设置on。如果用来进行下载等应用磁盘io重负载应用，可设着off，以平衡磁盘与网络io处理速度，降低系统uptime。</span><br><span class="line">    sendfile        on;</span><br><span class="line">    # 此选项允许或禁止使用socket的TCP_CORK的选项，此选项仅在sendfile的时候使用。</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line">    </span><br><span class="line">    # keepalive超时时间。</span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    # 开启gzip压缩服务。</span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    # 虚拟主机。</span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;  # 配置监听端口号。</span><br><span class="line">        server_name  localhost;  # 配置访问域名，域名可以有多个，用空格隔开。</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;  # 字符集设置。</span><br><span class="line"></span><br><span class="line">        #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # 错误跳转页。</span><br><span class="line">        #error_page  404              &#x2F;404.html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page &#x2F;50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">        location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    proxy_pass   http:&#x2F;&#x2F;127.0.0.1;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">        # 请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        </span><br><span class="line">        #    root           html; # 根目录。</span><br><span class="line">        #    fastcgi_pass   127.0.0.1:9000; # 请求转向定义的服务器列表。</span><br><span class="line">        #    fastcgi_index  index.php; # 如果请求的Fastcgi_index URI是以 &#x2F; 结束的, 该指令设置的文件会被附加到URI的后面并保存在变量$fastcig_script_name中。</span><br><span class="line">        #    fastcgi_param  SCRIPT_FILENAME  &#x2F;scripts$fastcgi_script_name;</span><br><span class="line">        #    include        fastcgi_params;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # deny access to .htaccess files, if Apache&#39;s document root</span><br><span class="line">        # concurs with nginx&#39;s one</span><br><span class="line">        #</span><br><span class="line">        #location ~ &#x2F;\.ht &#123;</span><br><span class="line">        #    deny  all;</span><br><span class="line">        #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       8000;</span><br><span class="line">    #    listen       somename:8080;</span><br><span class="line">    #    server_name  somename  alias  another.alias;</span><br><span class="line"></span><br><span class="line">    #    location &#x2F; &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # HTTPS server</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       443 ssl; # 监听端口。</span><br><span class="line">    #    server_name  localhost; # 域名。</span><br><span class="line"></span><br><span class="line">    #    ssl_certificate      cert.pem; # 证书位置。</span><br><span class="line">    #    ssl_certificate_key  cert.key; # 私钥位置。</span><br><span class="line"></span><br><span class="line">    #    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">    #    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    #    ssl_ciphers  HIGH:!aNULL:!MD5; # 密码加密方式。</span><br><span class="line">    #    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    #    location &#x2F; &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>:bread:2、在这里建议将现有的nginx.conf文件复制一份出来并重命名为nginx.conf.bak文件，方便以后配置错了恢复。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -b &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf.bak</span><br></pre></td></tr></table></figure>
+
+<p>:lollipop:3、然后打开 /usr/local/nginx/conf 看看目录结构，发现已经复制好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="5WRGESCgMvcXA48.png" alt="image-20210314050447427"></p>
+<p>这时后就可以安心修改nginx.conf文件了！注：上面的说明文件和conf源文件一模一样，我只是加了注释，放心复制。</p>
+<p>:cookie:4、直接在本地创建一个空 nginx.conf 文件，复制上面 <a href="#shuoming">说明文件</a>的代码，按照我的注释配置你的网站：</p>
+<blockquote>
+<p>一般情况下只需要在最后一个}之前添加server配置就可以了</p>
+</blockquote>
+<p><img src= "/img/loading.gif" data-lazy-src="IcmynTujfboQLxY.png" alt="image-20210313170838307"></p>
+<p>比如我的个人主页网站配置如下：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="K16NxBa5loUeYzS.png" alt="image-20210315063102695"></p>
+<p>下面说说我为什么这么配置（如果你的网站不需要https访问，这一步可以忽略）。</p>
+<blockquote>
+<p>现在网站 https 已经是标配，这个配置还是很重要的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># -------------------http-----------------------</span><br><span class="line">    # -------------配置跳转https-------------</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name *.zhaifanhua.cn;</span><br><span class="line">        return 301 https:&#x2F;&#x2F;$http_host$request_uri;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面的配置是为了 http 跳转为 https ，当访问 80 端口时 nginx 自动转发为已经存在配置网址的 443 端口。比如别人访问网站 <a target="_blank" rel="noopener" href="http://zhaifanhua.cn/">http://zhaifanhua.cn</a> 会自动跳转为 <a target="_blank" rel="noopener" href="https://zhaifanhua.cn/">https://zhaifanhua.cn</a> 。</p>
+<p>这里我设置为 *.zhaifanhua.cn 是因为我有很多站点都需要跳转为 https 协议访问，并且我的证书是泛域名解析，干脆用通配符 * 来配置一劳永逸。这样访问任何前缀的域名都可以跳转为 https 协议了。</p>
+</blockquote>
+<p>下面就是正式配置网站目录和证书了，一下内容将参数 server_name、ssl_certificate、ssl_certificate_key、location 下的 root 修改你自己的域名和路径即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># -------------------https-----------------------</span><br><span class="line">    # -------------摘繁华主页------------------</span><br><span class="line">    server &#123;</span><br><span class="line">        listen					443 ssl;</span><br><span class="line">        server_name				zhaifanhua.cn www.zhaifanhua.cn;</span><br><span class="line">        # 证书位置</span><br><span class="line">        ssl_certificate			&#x2F;home&#x2F;ssl&#x2F;zhaifanhua.cn&#x2F;full_chain.pem;</span><br><span class="line">        # 私钥位置</span><br><span class="line">        ssl_certificate_key		&#x2F;home&#x2F;ssl&#x2F;zhaifanhua.cn&#x2F;private.key;</span><br><span class="line">        # 开启HSTS</span><br><span class="line">        add_header Strict-Transport-Security &quot;max-age&#x3D;63072000&quot; always;</span><br><span class="line">        # 装订在线证书状态协议</span><br><span class="line">        ssl_stapling            on;</span><br><span class="line">        ssl_stapling_verify     on;</span><br><span class="line">        # 配置会话缓存</span><br><span class="line">        ssl_session_cache		shared:SSL:1m;</span><br><span class="line">        ssl_session_timeout		5m;</span><br><span class="line">        # 配置协议</span><br><span class="line">        ssl_protocols			TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">        # 配置加密套件</span><br><span class="line">        ssl_ciphers				ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;</span><br><span class="line"></span><br><span class="line">        # 根目录</span><br><span class="line">        root                    &#x2F;home&#x2F;www&#x2F;www;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>:oden:5、修改完成后保存，然后用xftp上传到 /usr/local/nginx/conf 目录进行覆盖源文件，然后判断配置文件是否正确，有successful表示可用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>:stew:6、配置正确后，重启 nginx 重新加载配置文件使配置生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>🔒7、这时候访问网站已经出现了锁，说明 https 开启成功。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="nlrvjGMAwai1hyB.png" alt="image-20210315005057299"></p>
+<h2 id="zap-第六步：配置为系统服务"><a href="#zap-第六步：配置为系统服务" class="headerlink" title=":zap:第六步：配置为系统服务"></a>:zap:第六步：配置为系统服务</h2><p>:jack_o_lantern:1、在系统服务目录里创建 nginx.service 文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx.service</span><br></pre></td></tr></table></figure>
+
+<p>写入内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;nginx</span><br><span class="line">After&#x3D;network.target</span><br><span class="line">  </span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</span><br><span class="line">ExecReload&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload</span><br><span class="line">ExecStop&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s quit</span><br><span class="line">PrivateTmp&#x3D;true</span><br><span class="line">  </span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[Unit] 服务的说明<br>Description 描述服务<br>After 描述服务类别<br>[Service] 服务运行参数的设置<br>Type=forking 是后台运行的形式<br>ExecStart 为服务的具体运行命令<br>ExecReload 为重启命令<br>ExecStop 为停止命令<br>PrivateTmp=True 表示给服务分配独立的临时空间<br>[Install] 运行级别下服务安装的相关设置，可设置为多用户，即系统运行级别为3</p>
+</blockquote>
+<p>注意：[Service]的启动、重启、停止命令全部要求使用绝对路径，保存退出。</p>
+<p>:fireworks:2、设置用户的权限，重新加载 nginx.service 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 .&#x2F;nginx.service</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<p>:flags:3、杀死 nginx 重启nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pkill -9 nginx</span><br><span class="line">systemctl restart nginx</span><br><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="sZ5T7SKRbIvgFoY.png" alt="image-20210315025038577"></p>
+<p>说明配置系统服务成功！</p>
+<p>:camera:4、设置开机自启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx.service</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="lgCiOB6EZtu1Tho.png" alt="image-20210315025338229"></p>
+<p>说明开机自启动设置成功！</p>
+<h3 id="ghost-其他命令"><a href="#ghost-其他命令" class="headerlink" title=":ghost:其他命令"></a>:ghost:其他命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 启动nginx服务</span><br><span class="line">service nginx start</span><br><span class="line">systemctl start nginx.service</span><br><span class="line"># 查看服务当前状态</span><br><span class="line">service nginx status</span><br><span class="line">systemctl status nginx.service</span><br><span class="line"># 重新启动服务</span><br><span class="line">service nginx reload</span><br><span class="line">systemctl restart nginx.service　</span><br><span class="line"># 停止nginx服务</span><br><span class="line">service nginx stop</span><br><span class="line">systemctl stop nginx.service</span><br><span class="line"></span><br><span class="line"># 设置开机自启动</span><br><span class="line">systemctl enable nginx.service</span><br><span class="line"># 停止开机自启动</span><br><span class="line">systemctl disable nginx.service</span><br><span class="line"></span><br><span class="line"># 查看所有已启动的服务</span><br><span class="line">systemctl list-units --type&#x3D;service</span><br></pre></td></tr></table></figure>
+
+<h2 id="rose-致谢及彩蛋"><a href="#rose-致谢及彩蛋" class="headerlink" title=":rose:致谢及彩蛋"></a>:rose:致谢及彩蛋</h2><ul>
+<li>这篇文章写了整整两天，希望能为你带来帮助。由于知识水平有限，本文难免有不足之处，诚请各位同行提出批评和指正。</li>
+<li>配置功能可能需要没多长时间，但为了能让读者尽可能一次配置成功，查了无数的资料，也实验了好几遍……还是蛮累的，不要忘了一件三连哦！</li>
+</ul>
+<p>:maple_leaf:彩蛋 ：写这篇文章之前，我的域名开了CDN加速，原本我的nginx是配置好的，我更新了我的网站程序后，怎么刷新内容都不变，我还以为我的nginx出错了，而且考虑到我的服务器好长时间没有清理了，直接TMD把服务器重装了，结果忘了备份一个重要的数据库，导致所有资料都没了，你能想到我当时的心情了吧！！！！不过要是没有重装，我也不会写这篇文章了，哈哈哈哈……欲知后文，请关注我或者任何搜索引擎搜索“摘繁华”就能找到我，嘻嘻。</p>
+<blockquote>
+<p>如果你觉得这篇文章还不错，请动动小指头点赞、收藏和关注哦！若本文带给你很大帮助，也可以打赏博主一杯可乐:tea:ღゝ◡╹)ノ♡<br>摘繁华版权所有，转发或引用请附上原文链接哦！</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">摘繁华</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.zhaifanhua.com/2021/03/16/%E5%9C%A8CentOS%E4%B8%8A%E5%AE%89%E8%A3%85Nginx%E9%85%8D%E7%BD%AEHTTPS%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%EF%BC%88%E6%9C%80%E5%85%A8%E6%95%99%E7%A8%8B%EF%BC%89/">https://blog.zhaifanhua.com/2021/03/16/%E5%9C%A8CentOS%E4%B8%8A%E5%AE%89%E8%A3%85Nginx%E9%85%8D%E7%BD%AEHTTPS%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%EF%BC%88%E6%9C%80%E5%85%A8%E6%95%99%E7%A8%8B%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.zhaifanhua.com" target="_blank">摘繁华博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/main/pay/qq.png" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/main/pay/qq.png" alt="qq"/></a><div class="post-qr-code-desc">qq</div></li><li class="reward-item"><a href="/img/main/pay/wechat.png" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/main/pay/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/main/pay/alipay.png" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/main/pay/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/03/16/hello-world/"><img class="next-cover" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#tent-%E6%93%8D%E4%BD%9C%E6%8C%89%E9%94%AE"><span class="toc-number">1.</span> <span class="toc-text">:tent:操作按键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number"></span> <span class="toc-text">:zap:第一步：安装所需要的依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%8D%87%E7%BA%A7-openssl-%E9%9D%9E%E5%BF%85%E9%9C%80"><span class="toc-number"></span> <span class="toc-text">:zap:第二步：升级 openssl 非必需</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85Nginx"><span class="toc-number"></span> <span class="toc-text">:zap:第三步：正式安装Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85"><span class="toc-number"></span> <span class="toc-text">:zap:第四步：验证是否成功安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEnginx"><span class="toc-number"></span> <span class="toc-text">:zap:第五步：配置nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zap-%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E4%B8%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="toc-number"></span> <span class="toc-text">:zap:第六步：配置为系统服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ghost-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">:ghost:其他命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rose-%E8%87%B4%E8%B0%A2%E5%8F%8A%E5%BD%A9%E8%9B%8B"><span class="toc-number"></span> <span class="toc-text">:rose:致谢及彩蛋</span></a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By 摘繁华</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img height="12px" src="//blog.zhaifanhua.com/img/footer/beian.png" alt="公安备案"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=62042202000147">甘公网安备62042202000147号</a><span> | </span><img height="12px" src="//blog.zhaifanhua.com/img/footer/icp.png" alt="ICP备案"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn">陇ICP备2021000062号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'yEy4boHnpzW11sg3hsVDmtyN-gzGzoHsz',
+      appKey: 'qM2lUDKUlkLdeJBFvc2SI7ji',
+      placeholder: '记得留下你的暱称和邮箱,可以快速收到回復',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "75a77ca7-58dc-442d-89e2-1abc87549a43";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
