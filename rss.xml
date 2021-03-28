@@ -9,8 +9,33 @@
     <atom:link href="https://blog.zhaifanhua.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>摘繁华博客</description>
-    <pubDate>Sun, 28 Mar 2021 12:26:17 GMT</pubDate>
+    <pubDate>Sun, 28 Mar 2021 12:56:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>CSharp实现模拟双色球控制台应用程序</title>
+      <link>https://blog.zhaifanhua.com/2021/03/28/CSharp%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E5%8F%8C%E8%89%B2%E7%90%83%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</link>
+      <guid>https://blog.zhaifanhua.com/2021/03/28/CSharp%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E5%8F%8C%E8%89%B2%E7%90%83%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</guid>
+      <pubDate>Sun, 28 Mar 2021 12:34:25 GMT</pubDate>
+      
+      <description>CSharp实现模拟双色球控制台应用程序</description>
+      
+      
+      
+      
+      <category domain="https://blog.zhaifanhua.com/categories/CSharp/">CSharp</category>
+      
+      
+      <category domain="https://blog.zhaifanhua.com/tags/CSharp/">CSharp</category>
+      
+      <category domain="https://blog.zhaifanhua.com/tags/%E5%8F%8C%E8%89%B2%E7%90%83/">双色球</category>
+      
+      <category domain="https://blog.zhaifanhua.com/tags/%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/">控制台应用程序</category>
+      
+      
+      <comments>https://blog.zhaifanhua.com/2021/03/28/CSharp%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E5%8F%8C%E8%89%B2%E7%90%83%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Python(Jupyter)实现餐饮企业订单数据分析</title>
