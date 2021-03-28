@@ -93,8 +93,8 @@
     
     <item>
       <title>Hello World</title>
-      <link>https://blog.zhaifanhua.com/2021/03/14/hello-world/</link>
-      <guid>https://blog.zhaifanhua.com/2021/03/14/hello-world/</guid>
+      <link>https://blog.zhaifanhua.com/2021/03/14/HelloWorld/</link>
+      <guid>https://blog.zhaifanhua.com/2021/03/14/HelloWorld/</guid>
       <pubDate>Sat, 13 Mar 2021 20:04:17 GMT</pubDate>
       
       <description>Hello World</description>
@@ -106,7 +106,7 @@
       <category domain="https://blog.zhaifanhua.com/tags/Hello-World/">Hello World</category>
       
       
-      <comments>https://blog.zhaifanhua.com/2021/03/14/hello-world/#disqus_thread</comments>
+      <comments>https://blog.zhaifanhua.com/2021/03/14/HelloWorld/#disqus_thread</comments>
       
     </item>
     
