@@ -9,8 +9,33 @@
     <atom:link href="https://blog.zhaifanhua.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>摘繁华博客</description>
-    <pubDate>Thu, 18 Mar 2021 08:26:17 GMT</pubDate>
+    <pubDate>Sun, 28 Mar 2021 12:26:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python(jupyter)实现餐饮企业订单信息分析</title>
+      <link>https://blog.zhaifanhua.com/2021/03/28/Python%E5%AE%9E%E7%8E%B0%E9%A4%90%E9%A5%AE%E4%BC%81%E4%B8%9A%E8%AE%A2%E5%8D%95%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/</link>
+      <guid>https://blog.zhaifanhua.com/2021/03/28/Python%E5%AE%9E%E7%8E%B0%E9%A4%90%E9%A5%AE%E4%BC%81%E4%B8%9A%E8%AE%A2%E5%8D%95%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/</guid>
+      <pubDate>Sun, 28 Mar 2021 10:37:26 GMT</pubDate>
+      
+      <description>Python(jupyter)实现餐饮企业订单信息分析</description>
+      
+      
+      
+      
+      <category domain="https://blog.zhaifanhua.com/categories/Python/">Python</category>
+      
+      
+      <category domain="https://blog.zhaifanhua.com/tags/Python/">Python</category>
+      
+      <category domain="https://blog.zhaifanhua.com/tags/jupyter/">jupyter</category>
+      
+      <category domain="https://blog.zhaifanhua.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</category>
+      
+      
+      <comments>https://blog.zhaifanhua.com/2021/03/28/Python%E5%AE%9E%E7%8E%B0%E9%A4%90%E9%A5%AE%E4%BC%81%E4%B8%9A%E8%AE%A2%E5%8D%95%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>在CentOS上安装Nginx配置HTTPS并设置系统服务和开机启动（最全教程）</title>
