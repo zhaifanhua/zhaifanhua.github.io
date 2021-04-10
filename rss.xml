@@ -3,12 +3,12 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>摘繁华个人博客 ZhaiFanhua&#39;s Blog</title>
+    <title>摘繁华个人博客</title>
     <link>https://blog.zhaifanhua.com/</link>
     
     <atom:link href="https://blog.zhaifanhua.com/rss.xml" rel="self" type="application/rss+xml"/>
     
-    <description>摘繁华个人博客</description>
+    <description>白衣无尘，亦如初见。</description>
     <pubDate>Thu, 18 Mar 2021 08:26:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
