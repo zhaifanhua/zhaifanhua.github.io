@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.zhaifanhua.com/link/index.html</loc>
+    <loc>https://blog.zhaifanhua.com/about/index.html</loc>
     
-    <lastmod>2021-06-04</lastmod>
+    <lastmod>2021-06-05</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.zhaifanhua.com/about/index.html</loc>
+    <loc>https://blog.zhaifanhua.com/link/index.html</loc>
     
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-04</lastmod>
     
   </url>
   
@@ -186,13 +186,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
-    <lastmod>2021-06-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhaifanhua.com/tags/%E6%95%A3%E6%96%87/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
@@ -229,6 +222,13 @@
   
   <url>
     <loc>https://blog.zhaifanhua.com/tags/%E6%94%BB%E7%95%A5/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -314,13 +314,6 @@
 
   
   <url>
-    <loc>https://blog.zhaifanhua.com/categories/%E8%AF%97%E8%AF%8D/</loc>
-    <lastmod>2021-06-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhaifanhua.com/categories/%E6%95%A3%E6%96%87/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
@@ -336,6 +329,13 @@
   
   <url>
     <loc>https://blog.zhaifanhua.com/categories/%E6%94%BB%E7%95%A5/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhaifanhua.com/categories/%E8%AF%97%E8%AF%8D/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
