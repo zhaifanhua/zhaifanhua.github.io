@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.zhaifanhua.com/2021/06/11/39a2b01e6d07/</loc>
+    
+    <lastmod>2021-06-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.zhaifanhua.com/link/index.html</loc>
     
     <lastmod>2021-06-11</lastmod>
@@ -179,14 +186,14 @@
 
   
   <url>
-    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
+    <loc>https://blog.zhaifanhua.com/tags/Hello-World/</loc>
     <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhaifanhua.com/tags/Hello-World/</loc>
+    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
     <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -311,6 +318,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://blog.zhaifanhua.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhaifanhua.com/tags/NET/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -357,6 +378,13 @@
   
   <url>
     <loc>https://blog.zhaifanhua.com/categories/CSharp/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhaifanhua.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

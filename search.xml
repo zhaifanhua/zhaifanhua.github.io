@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>.NET面试题</title>
+      <link href="/2021/06/11/39a2b01e6d07/"/>
+      <url>/2021/06/11/39a2b01e6d07/</url>
+      
+        <content type="html"><![CDATA[<h1 id="NET面试题"><a href="#NET面试题" class="headerlink" title=".NET面试题"></a>.NET面试题</h1><blockquote><p>这里总结收集.NET面试题。</p></blockquote><p><img src="https://img.zhaifanhua.com/blogimg/20210611235021.png!sign" alt="image-20210611235007650"></p><h2 id="CSharp"><a href="#CSharp" class="headerlink" title="CSharp"></a>CSharp</h2><p>暂无</p><h2 id="SQL-Server"><a href="#SQL-Server" class="headerlink" title="SQL Server"></a>SQL Server</h2><p>1、写出一条 SQL 语句：取出文章表（article）中第 31 到第 40 记录（SQL Server，以自动增长的 id 作为主键，注意：id 可能不是连续的。）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM(</span><br><span class="line">    SELECT id, ROW_NUMBER() OVER(ORDER BY id ASC) AS rowid</span><br><span class="line">    FROM article</span><br><span class="line">) T</span><br><span class="line">WHERE T.rowid BETWEEN 31 and 40 </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CSharp </tag>
+            
+            <tag> 面试题 </tag>
+            
+            <tag> .NET </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>破解网页文字不能复制的方法</title>
       <link href="/2021/05/13/9a780238a6f6/"/>
       <url>/2021/05/13/9a780238a6f6/</url>
@@ -534,6 +563,17 @@
     
     
     <entry>
+      <title>道不同不相为谋，亦各从其志也。</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>居必择乡，游必择士。</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
@@ -561,17 +601,6 @@
       <url>/static/css/modify.css</url>
       
         <content type="html"><![CDATA[#toggle-sidebar {  bottom: 80px;}@media screen and (max-width: 700px) {  .aplayer {    display: none;  }}]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>道不同不相为谋，亦各从其志也。</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
