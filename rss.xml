@@ -9,8 +9,31 @@
     <atom:link href="https://blog.zhaifanhua.com/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>白衣无尘，亦如初见。</description>
-    <pubDate>Fri, 11 Jun 2021 22:37:26 GMT</pubDate>
+    <pubDate>Sat, 19 Jun 2021 08:26:17 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>通用.NET数据库访问类SqlHelper</title>
+      <link>https://blog.zhaifanhua.com/2021/06/19/bff0524135f8/</link>
+      <guid>https://blog.zhaifanhua.com/2021/06/19/bff0524135f8/</guid>
+      <pubDate>Fri, 18 Jun 2021 20:04:17 GMT</pubDate>
+      
+      <description>通用.NET数据库访问类SqlHelper</description>
+      
+      
+      
+      
+      <category domain="https://blog.zhaifanhua.com/categories/CSarp/">CSarp</category>
+      
+      
+      <category domain="https://blog.zhaifanhua.com/tags/NET/">.NET</category>
+      
+      <category domain="https://blog.zhaifanhua.com/tags/CSarp/">CSarp</category>
+      
+      
+      <comments>https://blog.zhaifanhua.com/2021/06/19/bff0524135f8/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>常用端口及范围</title>
@@ -55,6 +78,27 @@
       
       
       <comments>https://blog.zhaifanhua.com/2021/06/11/39a2b01e6d07/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL开启远程连接</title>
+      <link>https://blog.zhaifanhua.com/2021/06/11/55b08bc2ab7a/</link>
+      <guid>https://blog.zhaifanhua.com/2021/06/11/55b08bc2ab7a/</guid>
+      <pubDate>Fri, 11 Jun 2021 10:14:05 GMT</pubDate>
+      
+      <description>MySQL开启远程连接</description>
+      
+      
+      
+      
+      <category domain="https://blog.zhaifanhua.com/categories/MySQL/">MySQL</category>
+      
+      
+      <category domain="https://blog.zhaifanhua.com/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://blog.zhaifanhua.com/2021/06/11/55b08bc2ab7a/#disqus_thread</comments>
       
     </item>
     
@@ -411,48 +455,6 @@
       
       
       <comments>https://blog.zhaifanhua.com/2017/06/05/2112dbc289ba/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>三叠奏 挚尘无诲</title>
-      <link>https://blog.zhaifanhua.com/2017/01/06/871413cedde9/</link>
-      <guid>https://blog.zhaifanhua.com/2017/01/06/871413cedde9/</guid>
-      <pubDate>Thu, 05 Jan 2017 19:59:21 GMT</pubDate>
-      
-      <description>三叠奏 挚尘无诲</description>
-      
-      
-      
-      
-      <category domain="https://blog.zhaifanhua.com/categories/%E8%AF%97%E8%AF%8D/">诗词</category>
-      
-      
-      <category domain="https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/">诗词</category>
-      
-      
-      <comments>https://blog.zhaifanhua.com/2017/01/06/871413cedde9/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>金缕曲 冬月廿五日思英囡闲读性德词有感</title>
-      <link>https://blog.zhaifanhua.com/2016/12/23/dcc0e378817f/</link>
-      <guid>https://blog.zhaifanhua.com/2016/12/23/dcc0e378817f/</guid>
-      <pubDate>Thu, 22 Dec 2016 19:59:21 GMT</pubDate>
-      
-      <description>金缕曲 冬月廿五日思英囡闲读性德词有感</description>
-      
-      
-      
-      
-      <category domain="https://blog.zhaifanhua.com/categories/%E8%AF%97%E8%AF%8D/">诗词</category>
-      
-      
-      <category domain="https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/">诗词</category>
-      
-      
-      <comments>https://blog.zhaifanhua.com/2016/12/23/dcc0e378817f/#disqus_thread</comments>
       
     </item>
     
