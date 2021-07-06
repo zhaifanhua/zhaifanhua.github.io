@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>解决电脑不能复制移动删除文件夹的方法</title>
+      <link href="/2021/07/06/0ca56f2765d8/"/>
+      <url>/2021/07/06/0ca56f2765d8/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>有时候小伙伴们正在或刚使用过的文件夹或者某个文件，想要把它移动到其它的位置，或者删除它，又或者仅仅想重命名这个文件，但是在操作过程中，我们发现它弹出来了文件夹或者文件正在被使用，操作无法完成，怎么办呢？对于这种情况，我们可以使用多种方法来解决。具体是什么呢？</p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>找到占用文件或文件夹的进程，结束那个进程就可以了。具体为：</strong></p><p><strong>【任务管理器】&gt;【性能】&gt;【打开资源监视器】&gt;【CPU】&gt;【关联的句柄】&gt;【输入文件夹地址】&gt;【结束进程】</strong></p><h3 id="1、文件夹正在使用"><a href="#1、文件夹正在使用" class="headerlink" title="1、文件夹正在使用"></a>1、文件夹正在使用</h3><p><img src="https://img.zhaifanhua.com/blogimg/20210706115625.png!sign" alt="image-20210706115621973"></p><h3 id="2、【Ctrl】-【Alt】-【Del】快捷键打开任务管理器"><a href="#2、【Ctrl】-【Alt】-【Del】快捷键打开任务管理器" class="headerlink" title="2、【Ctrl】+【Alt】+【Del】快捷键打开任务管理器"></a>2、【Ctrl】+【Alt】+【Del】快捷键打开任务管理器</h3><p><img src="https://img.zhaifanhua.com/blogimg/20210706115834.png!sign" alt="image-20210706115833003"></p><h3 id="3、点击性能选项卡选择打开资源管理器"><a href="#3、点击性能选项卡选择打开资源管理器" class="headerlink" title="3、点击性能选项卡选择打开资源管理器"></a>3、点击性能选项卡选择打开资源管理器</h3><p><img src="https://img.zhaifanhua.com/blogimg/20210706120026.png!sign" alt="image-20210706120025366"></p><h3 id="4、打开-CPU-选项卡"><a href="#4、打开-CPU-选项卡" class="headerlink" title="4、打开 CPU 选项卡"></a>4、打开 CPU 选项卡</h3><p><img src="https://img.zhaifanhua.com/blogimg/20210706120121.png!sign" alt="image-20210706120119301"></p><h3 id="5、将路径复制到【关键的句柄】，右键【结束进程】"><a href="#5、将路径复制到【关键的句柄】，右键【结束进程】" class="headerlink" title="5、将路径复制到【关键的句柄】，右键【结束进程】"></a>5、将路径复制到【关键的句柄】，右键【结束进程】</h3><p><img src="https://img.zhaifanhua.com/blogimg/20210706120235.png!sign" alt="image-20210706120233849"></p><p><img src="https://img.zhaifanhua.com/blogimg/20210706120403.png!sign" alt="image-20210706120401074"></p><blockquote><p>如果你觉得这篇文章还不错，请动动小指头点赞、收藏和关注哦！若本文带给你很大帮助，也可以打赏博主一杯可乐​​ღゝ◡╹)ノ♡<br>摘繁华版权所有，转发或引用请附上原文链接哦！</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 攻略 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 攻略 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通用.NET数据库访问类SqlHelper</title>
       <link href="/2021/06/19/bff0524135f8/"/>
       <url>/2021/06/19/bff0524135f8/</url>
