@@ -235,14 +235,14 @@
 
   
   <url>
-    <loc>https://blog.zhaifanhua.com/tags/Hello-World/</loc>
+    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhaifanhua.com/tags/%E8%AF%97%E8%AF%8D/</loc>
+    <loc>https://blog.zhaifanhua.com/tags/Hello-World/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -306,6 +306,13 @@
   
   <url>
     <loc>https://blog.zhaifanhua.com/tags/Python/</loc>
+    <lastmod>2021-07-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhaifanhua.com/tags/SqlServer/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -395,13 +402,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://blog.zhaifanhua.com/tags/SqlServer/</loc>
-    <lastmod>2021-07-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
@@ -447,6 +447,13 @@
   </url>
   
   <url>
+    <loc>https://blog.zhaifanhua.com/categories/SqlServer/</loc>
+    <lastmod>2021-07-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.zhaifanhua.com/categories/%E6%94%BB%E7%95%A5/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
@@ -469,13 +476,6 @@
   
   <url>
     <loc>https://blog.zhaifanhua.com/categories/CSarp/</loc>
-    <lastmod>2021-07-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.zhaifanhua.com/categories/SqlServer/</loc>
     <lastmod>2021-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
